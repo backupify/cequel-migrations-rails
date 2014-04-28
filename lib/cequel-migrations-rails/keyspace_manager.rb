@@ -34,14 +34,14 @@ module Cequel
           strat_opts_array = []
           if strategy_options
             strategy_options.each_pair do |k,v|
-              strat_opts_array << "strategy_options:#{k.to_s} = #{v}"
+              strat_opts_array << "'#{k.to_s}' : #{v}"
             end
           end
-          cql_cmd = ["CREATE KEYSPACE #{keyspace_name} WITH strategy_class = '#{strategy_class_name}'"]
-          if !strat_opts_array.empty?
-            cql_cmd << strat_opts_array.join(" AND ")
+          if strat_opts_array.empty?
+            cql_cmd = "CREATE KEYSPACE #{keyspace_name} WITH REPLICATION = { 'class' : '#{strategy_class_name}'} };"
+          else
+            cql_cmd = "CREATE KEYSPACE #{keyspace_name} WITH REPLICATION = { 'class' : '#{strategy_class_name}', #{strat_opts_array.join(',')} };"
           end
-          cql_cmd.join(" AND ")
         end
       end
     end
