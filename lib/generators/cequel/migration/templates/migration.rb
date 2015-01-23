@@ -1,4 +1,4 @@
-class <%= migration_class_name %> < Cequel::Migration
+class <%= migration_class_name %> < CequelCQL2::Migration
   def up
   end
 
