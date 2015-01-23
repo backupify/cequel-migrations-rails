@@ -5,7 +5,7 @@ require 'cequel-migrations-rails/version'
 
 Gem::Specification.new do |gem|
   gem.name          = "cequel-migrations-rails"
-  gem.version       = Cequel::Migrations::Rails::VERSION
+  gem.version       = CequelCQL2::Migrations::Rails::VERSION
   gem.authors       = ["Andrew De Ponte"]
   gem.email         = ["cyphactor@gmail.com"]
   gem.description   = %q{Cequel migration support for Rails.}

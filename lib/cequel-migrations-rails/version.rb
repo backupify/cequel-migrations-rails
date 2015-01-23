@@ -1,4 +1,4 @@
-module Cequel
+module CequelCQL2
   module Migrations
     module Rails
       VERSION = "0.2.6"
