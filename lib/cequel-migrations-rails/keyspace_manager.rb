@@ -1,4 +1,4 @@
-module Cequel
+module CequelCQL2
   module Migrations
     module Rails
       class KeyspaceManager

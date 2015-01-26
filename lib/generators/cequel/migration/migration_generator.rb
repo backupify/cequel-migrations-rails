@@ -1,4 +1,4 @@
-module Cequel
+module CequelCQL2
   module Generators
     class MigrationGenerator < ::Rails::Generators::NamedBase
       attr_reader :migration_class_name

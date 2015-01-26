@@ -2,9 +2,9 @@ require "cassandra-cql"
 
 require "cequel-migrations-rails/version"
 require "cequel-migrations-rails/keyspace_manager"
-require "cequel/migration"
+require "cequel_cql2/migration"
 
-module Cequel
+module CequelCQL2
   module Migrations
     module Rails
       class Railtie < ::Rails::Railtie
