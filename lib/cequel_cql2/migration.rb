@@ -12,7 +12,7 @@ module CequelCQL2
     end
 
     def self.cequel_conf_path
-      File.join(::Rails.root, "config", "cequel.yml")
+      File.join(::Rails.root, "config", "cequel_cql2.yml")
     end
 
     def self.cequel_conf_file

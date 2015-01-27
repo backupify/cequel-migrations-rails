@@ -26,7 +26,7 @@ describe CequelCQL2::Migration do
   describe ".cequel_conf_path" do
     it "returns the path to the cequel conf file" do
       ::Rails.stub(:root).and_return('/foo/bar')
-      migration_class.cequel_conf_path.should eq('/foo/bar/config/cequel.yml')
+      migration_class.cequel_conf_path.should eq('/foo/bar/config/cequel_cql2.yml')
     end
   end
 

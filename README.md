@@ -56,7 +56,7 @@ rails g cequel:migration CreateUserColumnFamily
 
 ### Create Database
 
-To create the database specified in your `config/cequel.yml` and create a
+To create the database specified in your `config/cequel_cql2.yml` and create a
 column family in it called `schema_migrations` run the following command:
 
 ```
@@ -66,7 +66,7 @@ rake cequel:create
 #### Strategy & Strategy Options
 
 Before `cequel:create` will work the `strategy_class` and any
-`strategy_options` need to be set per environment in the `config/cequel.yml`
+`strategy_options` need to be set per environment in the `config/cequel_cql2.yml`
 config as seen in the example below.
 
 ```

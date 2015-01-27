@@ -10,7 +10,7 @@ module CequelCQL2
         end
 
         def self.cequel_env_conf
-          YAML::load(ERB.new(File.read(File.join(::Rails.root,"config", "cequel.yml"))).result)[::Rails.env]
+          YAML::load(ERB.new(File.read(File.join(::Rails.root,"config", "cequel_cql2.yml"))).result)[::Rails.env]
         end
 
         def create_keyspace
