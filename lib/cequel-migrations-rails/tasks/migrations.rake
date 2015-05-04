@@ -1,7 +1,7 @@
 require 'shearwater'
 require 'shearwater/cassandra_cql_backend'
 
-namespace :cequel do
+namespace :cequel_migrations do
   desc "Create the cequel specified cassandra keystore for the current environment"
   task :create => :environment do
     keyspace_manager = CequelCQL2::Migrations::Rails::KeyspaceManager.new
@@ -53,7 +53,7 @@ namespace :cequel do
     Rake::Task["cequel:migrate"].invoke
   end
 
-  desc "Launches cqlsh command and connects to cassandra server specified in your cequel.yml"
+  desc "Launches cqlsh command and connects to cassandra server specified in your cequel_cql2.yml"
   task :shell do
     keyspace_manager = CequelCQL2::Migrations::Rails::KeyspaceManager.new
     server_parts = keyspace_manager.db.connection.current_server.to_s.split(':')

@@ -41,7 +41,7 @@ describe CequelCQL2::Migrations::Rails::KeyspaceManager do
   end
 
   describe "#use_keyspace" do
-    it "send the cql command to use the keyspace from the cequel.yml" do
+    it "send the cql command to use the keyspace from the cequel_cql2.yml" do
       CequelCQL2::Migrations::Rails::KeyspaceManager.stub(:cequel_env_conf).and_return({ 'host' => 'some host', 'keyspace' => 'my_keyspace' })
       db = mock('db')
       CassandraCQL::Database.stub(:new).and_return(db)
@@ -51,7 +51,7 @@ describe CequelCQL2::Migrations::Rails::KeyspaceManager do
   end
 
   describe "#drop_keyspace" do
-    it "sends the cql comand to drop the keyspace from the cequel.yml" do
+    it "sends the cql comand to drop the keyspace from the cequel_cql2.yml" do
       CequelCQL2::Migrations::Rails::KeyspaceManager.stub(:cequel_env_conf).and_return({ 'host' => 'some host', 'keyspace' => 'my_keyspace' })
       db = mock('db')
       CassandraCQL::Database.stub(:new).and_return(db)
