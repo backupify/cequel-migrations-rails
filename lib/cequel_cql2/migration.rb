@@ -2,6 +2,9 @@ module CequelCQL2
   class Migration
     attr_reader :db
 
+    # Use class attribute since inheritance is used
+    class_attribute :configuration
+
     def initialize
       # Specify CQL Version 2.0
       @db = CassandraCQL::Database.new(server, { :keyspace => self.class.cequel_env_conf['keyspace'], :cql_version => '2.0.0' }, thrift_options)
@@ -9,6 +12,10 @@ module CequelCQL2
 
     def execute(cql_string)
       db.execute(cql_string)
+    end
+
+    def self.configure(configuration)
+      self.configuration = configuration
     end
 
     def self.cequel_conf_path
@@ -20,11 +27,11 @@ module CequelCQL2
     end
 
     def self.cequel_conf
-      YAML::load(ERB.new(self.cequel_conf_file.read).result)
+       YAML::load(ERB.new(self.cequel_conf_file.read).result)
     end
 
     def self.cequel_env_conf
-      self.cequel_conf[::Rails.env]
+      self.configuration ||= self.cequel_conf[::Rails.env]
     end
 
   private
