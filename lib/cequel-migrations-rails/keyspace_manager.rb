@@ -4,9 +4,10 @@ module CequelCQL2
       class KeyspaceManager
         attr_reader :db
 
-        def initialize
+        def initialize(connection_options = {}, thrift_client_options = {})
           # Specify CQL Version 2.0
-          @db = CassandraCQL::Database.new(servers, :cql_version => '2.0.0')
+          connection_options[:cql_version] = '2.0.0'
+          @db = CassandraCQL::Database.new(servers, connection_options, thrift_client_options)
         end
 
         def self.cequel_env_conf
