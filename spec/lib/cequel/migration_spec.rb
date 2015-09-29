@@ -8,7 +8,7 @@ describe CequelCQL2::Migration do
   describe "#new" do
     it "create a cassandra-cql database connection for the host & keyspace specified in the environment's config" do
       migration_class.stub(:cequel_env_conf).and_return({ 'host' => 'somehost', 'keyspace' => 'somekeyspace' })
-      CassandraCQL::Database.should_receive(:new).with('somehost', { :keyspace => 'somekeyspace' }, {})
+      CassandraCQL::Database.should_receive(:new).with('somehost', { :keyspace => 'somekeyspace', :cql_version => "2.0.0" }, {})
       migration
     end
   end
@@ -97,8 +97,19 @@ describe CequelCQL2::Migration do
         ::Rails.stub(:env).and_return('nonexistentenvironment')
       end
 
-      it "returns nil" do
-        migration_class.cequel_env_conf.should be_nil
+      it "returns default config" do
+        migration_class.cequel_env_conf.should eq({
+          "host"=>"capture.services.dev:9160",
+          "keyspace"=>"capture_api_dev",
+          "strategy_class"=>"SimpleStrategy",
+          "strategy_options"=>{
+            "replication_factor"=>1
+          },
+          "thrift"=>{
+            "connect_timeout"=>5,
+            "timeout"=>10
+          }
+        })
       end
     end
   end
@@ -122,9 +133,9 @@ describe CequelCQL2::Migration do
           ::Rails.stub(:env).and_return('test')
         end
 
-        it "returns an empty hash" do
+        it "return default thrift options" do
           CassandraCQL::Database.stub(:new).and_return(stub.as_null_object)
-          migration.send(:thrift_options).should eq({})
+          migration.send(:thrift_options).should eq({:connect_timeout => 5, :timeout => 10})
         end
       end
     end

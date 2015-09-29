@@ -10,7 +10,7 @@ describe CequelCQL2::Migrations::Rails::KeyspaceManager do
   describe "#new" do
     it "creates a CQL connection" do
       CequelCQL2::Migrations::Rails::KeyspaceManager.stub(:cequel_env_conf).and_return({ 'host' => 'some host' })
-      CassandraCQL::Database.should_receive(:new).with('some host')
+      CassandraCQL::Database.should_receive(:new).with('some host', {:cql_version => "2.0.0"})
       CequelCQL2::Migrations::Rails::KeyspaceManager.new
     end
   end
